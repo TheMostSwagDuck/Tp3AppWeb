@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="col d-flex justify-content-center">
-      <div class="card w-75">
+      <div class="card w-75 mt-3">
         <div class="card-header bg-dark text-light">
           {{this.pageName}}
         </div>
@@ -23,7 +23,7 @@
                 <div class="input-group-prepend mt-3" v-if="this.nameShow">
                   <div class = "row w-100">
                   <div class="input-group-text col">Nom Compte:</div>
-                  <input type="text" class="form-control w-100 col-8" placeholder="Nom du Compte" aria-label="Password" aria-describedby="basic-addon1" v-model="password">
+                  <input type="text" class="form-control w-100 col-8" placeholder="Nom du Compte" aria-label="Password" aria-describedby="basic-addon1" v-model="name">
                 </div>
               </div>
             </div>

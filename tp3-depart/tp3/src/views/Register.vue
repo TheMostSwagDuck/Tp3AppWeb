@@ -14,6 +14,32 @@ export default {
   name: 'Register',
   components: {
     UserEmailPass
+  },
+  data () {
+    return {
+      email: '',
+      password: '',
+      name: ''
+    }
+  },
+  methods: {
+    async Register () {
+      await this.$store.dispatch('authentication/register', {
+        email: this.email,
+        password: this.password,
+        name: this.name
+      })
+      if (!this.authServiceError) {
+        this.$router.push({
+          name: 'Login'
+        })
+      }
+    }
+  },
+   computed: {
+    authServiceError () {
+      return this.$store.state.authentication.authServiceError
+    }
   }
 }
 </script>
