@@ -54,6 +54,7 @@
 </template>
 
 <script>
+import { ui } from '../externalization/uiTextPlugin.js'
 export default {
   data () {
     return {
@@ -69,12 +70,12 @@ export default {
       await this.$store.dispatch('map/loadParks')
     } catch (error) {
       this.hasServiceError = true
-      this.makeToast('Impossible de charger les parks', 'Erreur Serveur')
+      this.makeToast(ui.Selection.IMPOSSIBlE_LOADING('les parks'), ui.SERVER_ERROR_TITLE)
     }
     if (this.isLoggedIn) {
       await this.$store.dispatch('profile/getProfile')
       if (this.onError) {
-        this.makeToast('Erreur du chargement du profile', 'Erreur Serveur')
+        this.makeToast(ui.Selection.CANT_LOAD_USER, ui.SERVER_ERROR_TITLE)
       }
     }
   },
@@ -117,7 +118,7 @@ export default {
         await this.$store.dispatch('map/loadTrails', this.selectedPark.id)
       } catch (error) {
         this.hasServiceError = true
-        this.makeToast('Impossible de charger les sentiers pour le park choisi', 'Erreur Serveur')
+        this.makeToast(ui.Selection.IMPOSSIBlE_LOADING('les sentiers pour le park choisi'), ui.SERVER_ERROR_TITLE)
       }
     },
     async getLike () {
@@ -133,11 +134,11 @@ export default {
           await this.$store.dispatch('profile/likeTrail', this.selectedTrail.id)
           this.isLiked = true
         } catch (e) {
-          this.makeToast('Impossible de like pour le moment', 'Erreur Serveur')
+          this.makeToast(ui.Selection.IMPOSSIBLE_ACTION('like'), ui.SERVER_ERROR_TITLE)
         }
         this.updateLikes()
       } else {
-        this.makeToast('Veuillez vous connecter faire cette action', 'Action Impossible')
+        this.makeToast(ui.NEEDED_CONNECTION_ACTION, ui.IMPOSSIBLE_ACTION_ERROR_TITLE)
       }
       this.likeLoading = false
     },
@@ -148,11 +149,11 @@ export default {
           await this.$store.dispatch('profile/dislikeTrail', this.likes)
           this.isLiked = false
         } catch (e) {
-          this.makeToast('Impossible de retirer le like pour le moment', 'Erreur Serveur')
+          this.makeToast(ui.Selection.IMPOSSIBLE_ACTION('retirer un like'), ui.SERVER_ERROR_TITLE)
         }
         await this.updateLikes()
       } else {
-        this.makeToast('Veuillez vous connecter faire cette action', 'Action Impossible')
+        this.makeToast(ui.NEEDED_CONNECTION_ACTION, ui.IMPOSSIBLE_ACTION_ERROR_TITLE)
       }
       this.likeLoading = false
     },
@@ -161,7 +162,7 @@ export default {
         await this.$store.dispatch('map/updateLikes', this.selectedTrail)
       } catch (error) {
         this.isLiked = false
-        this.makeToast('Impossible de charger le nombre de like du sentier', 'Erreur Serveur')
+        this.makeToast(ui.Selection.IMPOSSIBlE_LOADING('le nombre de like du sentier'), ui.SERVER_ERROR_TITLE)
       }
     },
     makeToast (msg, title) {
