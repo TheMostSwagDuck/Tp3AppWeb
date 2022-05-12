@@ -19,7 +19,7 @@ git commit -m 'deploy'
 # Étape 4 - Déployer le site comme page GitHub
 #                              ____ nom du repo
 #                             V
-git push -f git@github.com:TheMostSwagDuck/Tp3AppWeb.git master:Page
+git push -f git@github.com:TheMostSwagDuck/Tp3AppWeb.git master:gh-pages
 #                                                                  ^
 #                             nom de la branche d'une page GitHub__|
 cd -
