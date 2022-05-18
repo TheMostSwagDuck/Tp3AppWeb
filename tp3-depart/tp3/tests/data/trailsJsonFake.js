@@ -10,16 +10,14 @@ export const trailsJsonFake = [
       "Pédestre"
     ],
     segments: [
-      1,
-      2,
-      3
+      1
     ],
     parkId: "1",
     park: "Jacques-Cartier",
     name: "Les Loups"
   },
   {
-    id: 246,
+    id: 247,
     difficulties: [
       "Facile"
     ],
@@ -37,7 +35,7 @@ export const trailsJsonFake = [
     name: "Un sentier"
   },
   {
-    id: 246,
+    id: 248,
     difficulties: [
       "Difficile"
     ],

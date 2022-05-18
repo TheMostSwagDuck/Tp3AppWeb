@@ -130,7 +130,7 @@ describe('Map store module', () => {
     test('updateLikes doit faire la mutation des likes et lancer une erreur si une erreur survient', async () => {
       const commit = jest.fn()
       trailsService.getNbLikesByTrailId.mockImplementation(() => {
-        throw new Error();
+        throw new Error()
       })
 
       try {
