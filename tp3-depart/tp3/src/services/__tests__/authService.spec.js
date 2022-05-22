@@ -13,5 +13,6 @@ beforeEach(() => {
     mockAxios.reset()
 })
 
-describe('authService', () => {
+describe('authService.js tests', () => {
+    test("getToken doit retourner le em")
 })

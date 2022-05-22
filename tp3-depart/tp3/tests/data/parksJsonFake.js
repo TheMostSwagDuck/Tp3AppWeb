@@ -3,7 +3,7 @@ export const parksJsonFake = [
     id: "15",
     name: "Anticosti",
     trails: {
-      countSegments: 63
+      countSegments: 1
     },
     userId: 0
   },

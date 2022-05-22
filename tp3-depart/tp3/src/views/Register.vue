@@ -21,7 +21,7 @@
               <div class="input-group-prepend mt-3">
                 <div class = "row w-100">
                   <div class="input-group-text col">Nom Compte:</div>
-                  <input type="text" class="form-control w-100 col-8" placeholder="Nom du Compte" aria-label="Password" aria-describedby="basic-addon1" v-model="name">
+                  <input type="text" class="form-control w-100 col-8" placeholder="Nom du Compte" aria-label="Name" aria-describedby="basic-addon1" v-model="name">
                 </div>
               </div>
             </div>
@@ -30,7 +30,7 @@
       </div>
     </div>
     <div class="registerButton mt-3">
-      <button id="register" class="btn btn-primary" @click="register">Créer le compte</button>
+      <button id="register" class="btn btn-primary" @click="register()">Créer le compte</button>
       <div v-if="authServiceError">{{ authServiceError }}</div>
     </div>
   </div>

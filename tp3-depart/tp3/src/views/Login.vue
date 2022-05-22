@@ -26,8 +26,8 @@
       </div>
     </div>
     <div class="loginButton mt-4 w-75">
-      <button id="login" class="btn btn-primary" @click="login">Se Connecter</button>
-      <router-link class="nav-link active" v-bind:to="{ name: 'Register'}">Créer un compte</router-link>
+      <button id="login" class="btn btn-primary" @click="login()">Se Connecter</button>
+      <router-link id="toRegister" class="nav-link active" v-bind:to="{ name: 'Register'}">Créer un compte</router-link>
       <div v-if="authServiceError">{{ authServiceError }}</div>
     </div>
   </div>
