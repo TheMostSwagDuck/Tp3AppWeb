@@ -15,6 +15,23 @@ beforeEach(() => {
 
 describe('authService.js tests', () => {
     test("getToken doit retourner le token", async () => {
-        mockAxios.onGet(`${API}/login`).reply(200,)
+        const credential = {
+            email: "email",
+            password: "password"
+        }
+        mockAxios.onPost(`${API}/login`).reply(200,1)
+        const response = await authService.getToken(credential)
+        expect(response).toEqual(1)
+    }),
+    test("PostUser doit retourner code 200", async () =>{
+        const user = {
+            email:"email",
+            password:"pass",
+            nom:"nom"
+        }
+        mockAxios.onPost(`${API}/register`).reply(200)
+        const response = await authService.postUser(user)
+        expect(response).toEqual(200)
+        
     })
 })
