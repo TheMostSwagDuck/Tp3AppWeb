@@ -10,7 +10,8 @@ const store = {
     state: {
         authentication:{
             authentication: [...authJsonFake],
-            OnError: false
+            OnError: false,
+            authServiceError: 'allo'
         }
     },
     dispatch: jest.fn(),
@@ -47,12 +48,34 @@ describe('Login.vue Tests', () => {
         expect(wrapper.find('#toRegister').props().to).toStrictEqual({"name": "Register"})  
     }),
     test('Si lusager clique sur le bouton connection avec de mauvaise information doit afficher le méssage derreur', async () => {
-        const wrapper = await LoginShallowMount()
+        const store2 = {
+            state: {
+                authentication:{
+                    authServiceError: 'allo'
+                }
+            },
+            dispatch: jest.fn(),
+            commit: jest.fn(),
+            authServiceError: jest.fn()
+        }
+        const wrapper = shallowMount(Login, {
+            mocks: {
+                $store:store2,
+                $router: {
+                    push: param => jest.fn(param)
+                }
+            },
+            stubs: {
+                RouterLink:RouterLinkStub
+            }
+        })
         await wrapper.find('#login').trigger('click')
         await flushPromises()
 
         expect(wrapper.find('#errorMsg').isVisible()).toBe(true)
+        expect(wrapper.find('#errorMsg').text()).toBe('allo')
     })
+
 })
 
 async function LoginShallowMount() {

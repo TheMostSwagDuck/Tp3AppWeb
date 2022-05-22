@@ -31,7 +31,7 @@
     </div>
     <div class="registerButton mt-3">
       <button id="register" class="btn btn-primary" @click="register()">Créer le compte</button>
-      <div v-if="authServiceError">{{ authServiceError }}</div>
+      <div id="errorMsg" v-if="authServiceError">{{ authServiceError }}</div>
     </div>
   </div>
 </template>

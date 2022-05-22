@@ -40,6 +40,34 @@ describe('Register.vue Tests', () => {
         await flushPromises()
 
         expect(spyRegister).toHaveBeenCalled()  
+    }),
+    test('Si lusager clique sur le bouton créer le compte avec de mauvaise information doit afficher le message derreur', async () => {
+        const store2 = {
+            state: {
+                authentication:{
+                    authServiceError: 'allo'
+                }
+            },
+            dispatch: jest.fn(),
+            commit: jest.fn(),
+            authServiceError: jest.fn()
+        }
+        const wrapper = shallowMount(Register, {
+            mocks: {
+                $store:store2,
+                $router: {
+                    push: param => jest.fn(param)
+                }
+            },
+            stubs: {
+                RouterLink:RouterLinkStub
+            }
+        })
+        await wrapper.find('#register').trigger('click')
+        await flushPromises()
+
+        expect(wrapper.find('#errorMsg').isVisible()).toBe(true)
+        expect(wrapper.find('#errorMsg').text()).toBe('allo')
     })
 })
 

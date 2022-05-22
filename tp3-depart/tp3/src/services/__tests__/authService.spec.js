@@ -14,5 +14,7 @@ beforeEach(() => {
 })
 
 describe('authService.js tests', () => {
-    test("getToken doit retourner le em")
+    test("getToken doit retourner le token", async () => {
+        mockAxios.onGet(`${API}/login`).reply(200,)
+    })
 })
