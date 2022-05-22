@@ -1,6 +1,5 @@
 import { shallowMount,RouterLinkStub } from "@vue/test-utils";
 import Register from '@/views/Register.vue'
-import {authJsonFake} from "@/../tests/data/authJsonFake"
 import flushPromises from "flush-promises";
 
 jest.mock('@/services/authService')
@@ -9,7 +8,6 @@ jest.mock('@/shared/tokenHelper')
 const store = {
     state: {
         authentication:{
-            authentication: [...authJsonFake],
             OnError: false
         }
     },
@@ -17,10 +15,7 @@ const store = {
     commit: jest.fn()
 }
 
-let auths
-
 beforeEach(() => {
-    auths = [...authJsonFake]
     jest.clearAllMocks()
 })
 
@@ -32,7 +27,7 @@ describe('Register.vue Tests', () => {
         expect(wrapper.vm.password).toBe('')
         expect(wrapper.vm.name).toBe('')
         
-    }),
+    })
     test('Si lusager clique sur le bouton créer le compte doit appeler la méthode register', async () => {
         const wrapper = await RegisterShallowMount()
         const spyRegister = jest.spyOn(wrapper.vm, 'register')
@@ -40,7 +35,7 @@ describe('Register.vue Tests', () => {
         await flushPromises()
 
         expect(spyRegister).toHaveBeenCalled()  
-    }),
+    })
     test('Si lusager clique sur le bouton créer le compte avec de mauvaise information doit afficher le message derreur', async () => {
         const store2 = {
             state: {

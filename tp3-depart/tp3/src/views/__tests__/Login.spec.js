@@ -1,6 +1,5 @@
 import { shallowMount,RouterLinkStub } from "@vue/test-utils";
 import Login from '@/views/Login.vue'
-import {authJsonFake} from "@/../tests/data/authJsonFake"
 import flushPromises from "flush-promises";
 
 jest.mock('@/services/authService')
@@ -9,7 +8,6 @@ jest.mock('@/shared/tokenHelper')
 const store = {
     state: {
         authentication:{
-            authentication: [...authJsonFake],
             OnError: false,
             authServiceError: 'allo'
         }
@@ -19,10 +17,7 @@ const store = {
     authServiceError: jest.fn()
 }
 
-let auths
-
 beforeEach(() => {
-    auths = [...authJsonFake]
     jest.clearAllMocks()
 })
 
@@ -33,7 +28,7 @@ describe('Login.vue Tests', () => {
         expect(wrapper.vm.email).toBe('')
         expect(wrapper.vm.password).toBe('')
         
-    }),
+    })
     test('Si lusager clique sur le bouton connection doit appeler la méthode login', async () => {
         const wrapper = await LoginShallowMount()
         const spyLogin = jest.spyOn(wrapper.vm, 'login')
@@ -41,12 +36,12 @@ describe('Login.vue Tests', () => {
         await flushPromises()
 
         expect(spyLogin).toHaveBeenCalled()  
-    }),
+    })
     test('le lien créer un compte doit lier vers la page Register', async () => {
         const wrapper = await LoginShallowMount()
 
         expect(wrapper.find('#toRegister').props().to).toStrictEqual({"name": "Register"})  
-    }),
+    })
     test('Si lusager clique sur le bouton connection avec de mauvaise information doit afficher le méssage derreur', async () => {
         const store2 = {
             state: {
