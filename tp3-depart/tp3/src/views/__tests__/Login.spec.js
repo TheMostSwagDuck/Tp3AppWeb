@@ -14,7 +14,8 @@ const store = {
         }
     },
     dispatch: jest.fn(),
-    commit: jest.fn()
+    commit: jest.fn(),
+    authServiceError: jest.fn()
 }
 
 let auths
@@ -39,6 +40,18 @@ describe('Login.vue Tests', () => {
         await flushPromises()
 
         expect(spyLogin).toHaveBeenCalled()  
+    }),
+    test('le lien créer un compte doit lier vers la page Register', async () => {
+        const wrapper = await LoginShallowMount()
+
+        expect(wrapper.find('#toRegister').props().to).toStrictEqual({"name": "Register"})  
+    }),
+    test('Si lusager clique sur le bouton connection avec de mauvaise information doit afficher le méssage derreur', async () => {
+        const wrapper = await LoginShallowMount()
+        await wrapper.find('#login').trigger('click')
+        await flushPromises()
+
+        expect(wrapper.find('#errorMsg').isVisible()).toBe(true)
     })
 })
 
@@ -53,8 +66,7 @@ async function LoginShallowMount() {
         },
         stubs: {
             RouterLink:RouterLinkStub
-        },
-        
+        }
     })
 
     await flushPromises()

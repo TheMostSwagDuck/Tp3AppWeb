@@ -1,6 +1,5 @@
 <template>
   <div class="login">
-  <div>
     <div class="col d-flex justify-content-center">
       <div class="card w-75 mt-3">
         <div class="card-header bg-dark text-light"> Login </div>
@@ -13,11 +12,10 @@
                   <input type="text" class="form-control w-100 col-8" placeholder="ABC@fournisseur.ca" aria-label="Email" aria-describedby="basic-addon1" v-model="email">
                 </div>
               </div>
-                <div class="input-group-prepend mt-3">
-                  <div class = "row w-100">
-                    <div class="input-group-text col">Mot de Passe:</div>
-                    <input type="password" class="form-control w-100 col-8" placeholder="Mots de Passe" aria-label="Password" aria-describedby="basic-addon1" v-model="password">
-                  </div>
+              <div class="input-group-prepend mt-3">
+                <div class = "row w-100">
+                  <div class="input-group-text col">Mot de Passe:</div>
+                  <input type="password" class="form-control w-100 col-8" placeholder="Mots de Passe" aria-label="Password" aria-describedby="basic-addon1" v-model="password">
                 </div>
               </div>
             </div>
@@ -28,7 +26,7 @@
     <div class="loginButton mt-4 w-75">
       <button id="login" class="btn btn-primary" @click="login()">Se Connecter</button>
       <router-link id="toRegister" class="nav-link active" v-bind:to="{ name: 'Register'}">Créer un compte</router-link>
-      <div v-if="authServiceError">{{ authServiceError }}</div>
+      <div id="errorMsg" v-if="authServiceError">{{ authServiceError }}</div>
     </div>
   </div>
 </template>
